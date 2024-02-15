@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class TestScoreStatisticsInocentes {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int numScores = 0;
+        int highestScore = Integer.MIN_VALUE;
+        int lowestScore = Integer.MAX_VALUE;
+        int scoreSum = 0;
+        
+        System.out.println("Scores cannot be greater than 100, 50, or 999\nType 999 to break"); 
+        while (true) 
+        {
+            System.out.print("Enter Numbers: ");
+            int score = scanner.nextInt();
+            
+            if (score == 999) 
+            {
+                break;
+            }
+            
+            if (score < 0 || score > 100) 
+            {
+                System.out.println("Invalid score. Score must be between 0 and 100.");
+                continue;
+            }
+            
+            numScores++;
+            scoreSum += score;
+            highestScore = Math.max(highestScore, score);
+            lowestScore = Math.min(lowestScore, score);
+        }
+        
+        if (numScores == 0) 
+        {
+            System.out.println("No scores entered.");
+        } 
+        else 
+        {
+            double averageScore = (double) scoreSum / numScores;
+            
+            System.out.println("Number of scores entered: " + numScores);
+            System.out.println("Highest score: " + highestScore);
+            System.out.println("Lowest score: " + lowestScore);
+            System.out.println("Arithmetic average: " + String.format("%.2f", averageScore));
+        }
+    }
+}
